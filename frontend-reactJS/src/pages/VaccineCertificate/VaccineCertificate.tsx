@@ -62,7 +62,7 @@ export const VaccineCertificate = () => {
         onConfirm={handleConfirmModal}
       />
       <Header />
-      <Box sx={{ minHeight: '500px' }}>
+      <Box sx={{ minHeight: "calc(100vh - 336px)" }}>
         <Box
           sx={{
             mt: '112px',

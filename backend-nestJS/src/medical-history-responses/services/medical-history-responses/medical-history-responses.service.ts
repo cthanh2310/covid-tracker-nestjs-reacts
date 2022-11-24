@@ -12,7 +12,7 @@ export class MedicalHistoryResponsesService {
     private readonly medicalHistoryResponseRepository: Repository<MedicalHistoryResponse>,
   ) {}
   async getMedicalHistoryResponses(): Promise<MedicalHistoryResponse[]> {
-    return await this.medicalHistoryResponseRepository.find();
+    return this.medicalHistoryResponseRepository.find();
   }
   async createMedicalHistoryResponse(
     createMedicalHistoryResponseDto: CreateMedicalHistoryResponseDto,
@@ -41,6 +41,6 @@ export class MedicalHistoryResponsesService {
     };
   }
   async deleteMedicalHistoryResponse(id: number) {
-    return await this.medicalHistoryResponseRepository.delete(id);
+    return this.medicalHistoryResponseRepository.delete(id);
   }
 }

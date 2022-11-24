@@ -26,7 +26,7 @@ export const useGetVaccinationSite = () => {
 export const useDeleteVaccinationSite = () => {
   const deleteVaccinationSite = useCallback(
     async (id: number): Promise<AxiosResponse> => {
-      return await axiosClient.delete(
+      return axiosClient.delete(
         `http://localhost:4000/vaccination-sites/delete/${id}`
       );
     },
@@ -37,7 +37,7 @@ export const useDeleteVaccinationSite = () => {
 export const useUpdateVaccinationSite = () => {
   const updateVaccinationSite = useCallback(
     async (data: VaccinationSiteUpdate): Promise<AxiosResponse> => {
-      return await axiosClient.put(
+      return axiosClient.put(
         `http://localhost:4000/vaccination-sites/update`,
         data
       );
@@ -51,7 +51,7 @@ export const useCreateVaccinationSite = () => {
     async (
       data: VaccinationSiteCreate
     ): Promise<AxiosResponse<VaccinationSiteCreateResponse>> => {
-      return await axiosClient.post(
+      return axiosClient.post(
         `http://localhost:4000/vaccination-sites/create`,
         data
       );

@@ -27,14 +27,14 @@ export class MedicalHistoryQuestionsController {
   @Get('')
   @UseInterceptors(ClassSerializerInterceptor)
   async getMedicalHistoryQuestions() {
-    return await this.medicalHistoryQuestionsService.getMedicalHistoryQuestions();
+    return this.medicalHistoryQuestionsService.getMedicalHistoryQuestions();
   }
   @Post('create')
   @UsePipes(ValidationPipe)
   async createMedicalHistoryQuestion(
     @Body() createMedicalHistoryQuestionDto: CreateMedicalHistoryQuestionDto,
   ) {
-    return await this.medicalHistoryQuestionsService.createMedicalHistoryQuestion(
+    return this.medicalHistoryQuestionsService.createMedicalHistoryQuestion(
       createMedicalHistoryQuestionDto,
     );
   }
@@ -42,7 +42,7 @@ export class MedicalHistoryQuestionsController {
   async updateMedicalHistoryQuestion(
     @Body() body: UpdateMedicalHistoryQuestionDto,
   ) {
-    return await this.medicalHistoryQuestionsService.updateMedicalHistoryQuestion(
+    return this.medicalHistoryQuestionsService.updateMedicalHistoryQuestion(
       body,
     );
   }
@@ -50,7 +50,7 @@ export class MedicalHistoryQuestionsController {
   async deleteMedicalHistoryQuestion(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<DeleteResult> {
-    return await this.medicalHistoryQuestionsService.deleteMedicalHistoryQuestion(
+    return this.medicalHistoryQuestionsService.deleteMedicalHistoryQuestion(
       id,
     );
   }

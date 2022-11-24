@@ -27,14 +27,14 @@ export class MedicalHistoryResponsesController {
   @Get('')
   @UseInterceptors(ClassSerializerInterceptor)
   async getMedicalHistoryResponses() {
-    return await this.medicalHistoryResponsesService.getMedicalHistoryResponses();
+    return this.medicalHistoryResponsesService.getMedicalHistoryResponses();
   }
   @Post('create')
   @UsePipes(ValidationPipe)
   async createMedicalHistoryResponse(
     @Body() createMedicalHistoryResponseDto: CreateMedicalHistoryResponseDto,
   ) {
-    return await this.medicalHistoryResponsesService.createMedicalHistoryResponse(
+    return this.medicalHistoryResponsesService.createMedicalHistoryResponse(
       createMedicalHistoryResponseDto,
     );
   }
@@ -42,7 +42,7 @@ export class MedicalHistoryResponsesController {
   async updateMedicalHistoryResponse(
     @Body() body: UpdateMedicalHistoryResponseDto,
   ) {
-    return await this.medicalHistoryResponsesService.updateMedicalHistoryResponse(
+    return this.medicalHistoryResponsesService.updateMedicalHistoryResponse(
       body,
     );
   }
@@ -50,7 +50,7 @@ export class MedicalHistoryResponsesController {
   async deleteMedicalHistoryResponse(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<DeleteResult> {
-    return await this.medicalHistoryResponsesService.deleteMedicalHistoryResponse(
+    return this.medicalHistoryResponsesService.deleteMedicalHistoryResponse(
       id,
     );
   }

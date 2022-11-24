@@ -12,7 +12,7 @@ export class VaccineRegistrationsService {
     private readonly vaccineRegistrationRepository: Repository<VaccineRegistration>,
   ) {}
   async getVaccineRegistrations(): Promise<VaccineRegistration[]> {
-    return await this.vaccineRegistrationRepository.find({
+    return this.vaccineRegistrationRepository.find({
       relations: [
         'personalInformation',
         'personalInformation.injection',
@@ -50,6 +50,6 @@ export class VaccineRegistrationsService {
     };
   }
   async deleteVaccineRegistration(id: number) {
-    return await this.vaccineRegistrationRepository.delete(id);
+    return this.vaccineRegistrationRepository.delete(id);
   }
 }

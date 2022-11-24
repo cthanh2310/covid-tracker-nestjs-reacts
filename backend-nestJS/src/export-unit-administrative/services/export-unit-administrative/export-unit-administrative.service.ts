@@ -81,7 +81,7 @@ export class ExportUnitAdministrativeService {
     return;
   }
   async getUnitAdministrative() {
-    return await this.provinceRepository.find({
+    return this.provinceRepository.find({
       relations: ['districts', 'districts.wards'],
     });
   }

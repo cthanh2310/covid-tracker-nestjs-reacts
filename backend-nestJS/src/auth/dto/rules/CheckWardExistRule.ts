@@ -17,7 +17,7 @@ export class IsExistedWardValidator implements ValidatorConstraintInterface {
     private readonly WardRepository: Repository<Ward>,
   ) {}
   async validate(text: any) {
-    return await this.WardRepository.findOne({ id: Number(text) }).then(
+    return this.WardRepository.findOne({ id: Number(text) }).then(
       (ward) => {
         if (ward) return true;
         return false;

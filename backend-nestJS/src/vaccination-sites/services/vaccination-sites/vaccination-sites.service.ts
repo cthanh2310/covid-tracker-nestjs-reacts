@@ -12,7 +12,7 @@ export class VaccinationSitesService {
     private readonly vaccinationSiteRepository: Repository<VaccinationSite>,
   ) {}
   async getVaccinationSites(): Promise<VaccinationSite[]> {
-    return await this.vaccinationSiteRepository.find({
+    return this.vaccinationSiteRepository.find({
       relations: ['ward', 'ward.district', 'ward.district.province'],
     });
   }
@@ -40,6 +40,6 @@ export class VaccinationSitesService {
     };
   }
   async deleteVaccinationSite(id: number) {
-    return await this.vaccinationSiteRepository.delete(id);
+    return this.vaccinationSiteRepository.delete(id);
   }
 }

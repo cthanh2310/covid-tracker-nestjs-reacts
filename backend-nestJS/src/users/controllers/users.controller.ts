@@ -26,7 +26,7 @@ export class UsersController {
   @Get('')
   @UseInterceptors(ClassSerializerInterceptor)
   async getUsers(): Promise<User[]> {
-    return await this.userService.getUsers();
+    return this.userService.getUsers();
   }
   @Post('create')
   @UsePipes(ValidationPipe)
@@ -36,7 +36,7 @@ export class UsersController {
   @UseInterceptors(ClassSerializerInterceptor)
   @Get(':id')
   async getUserById(@Param('id', ParseIntPipe) id: number) {
-    return await this.userService.getUserById(id);
+    return this.userService.getUserById(id);
   }
   @Delete('delete/:id')
   async deleteUserById(@Param('id', ParseIntPipe) id: number) {
@@ -44,6 +44,6 @@ export class UsersController {
   }
   @Put('update')
   async updateUser(@Body() body: UpdateUserDto) {
-    return await this.userService.updateUser(body);
+    return this.userService.updateUser(body);
   }
 }

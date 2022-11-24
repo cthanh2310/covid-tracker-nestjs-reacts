@@ -44,10 +44,10 @@ export class AuthController {
     @UploadedFiles() files: Array<Express.Multer.File>,
     @Body() body: RegisterDto,
   ) {
-    return await this.authService.register(files, body);
+    return this.authService.register(files, body);
   }
   @Post('/logout')
   async logout() {
-    return await this.authService.logout();
+    return this.authService.logout();
   }
 }

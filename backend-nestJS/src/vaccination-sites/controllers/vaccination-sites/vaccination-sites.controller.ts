@@ -27,25 +27,25 @@ export class VaccinationSitesController {
   @Get('')
   @UseInterceptors(ClassSerializerInterceptor)
   async getVaccinationSites() {
-    return await this.vaccinationSitesService.getVaccinationSites();
+    return this.vaccinationSitesService.getVaccinationSites();
   }
   @Post('create')
   @UsePipes(ValidationPipe)
   async createVaccinationSite(
     @Body() createVaccinationSiteDto: CreateVaccinationSiteDto,
   ) {
-    return await this.vaccinationSitesService.createVaccinationSite(
+    return this.vaccinationSitesService.createVaccinationSite(
       createVaccinationSiteDto,
     );
   }
   @Put('update')
   async updateVaccinationSite(@Body() body: UpdateVaccinationSiteDto) {
-    return await this.vaccinationSitesService.updateVaccinationSite(body);
+    return this.vaccinationSitesService.updateVaccinationSite(body);
   }
   @Delete('delete/:id')
   async deleteVaccinationSite(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<DeleteResult> {
-    return await this.vaccinationSitesService.deleteVaccinationSite(id);
+    return this.vaccinationSitesService.deleteVaccinationSite(id);
   }
 }

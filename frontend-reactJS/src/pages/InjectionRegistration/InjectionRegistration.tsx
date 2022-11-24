@@ -88,7 +88,7 @@ export const InjectionRegistration = () => {
           </Typography>
         </Container>
       </Box>
-      <Container maxWidth="xl">
+      <Container maxWidth="xl" sx={{ minHeight: "calc(100vh - 408px)" }}>
         <Box
           component="form"
           sx={{ mb: '110px' }}

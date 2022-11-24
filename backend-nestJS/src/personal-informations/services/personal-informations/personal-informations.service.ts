@@ -13,7 +13,7 @@ export class PersonalInformationsService {
     private readonly personalInformationRepository: Repository<PersonalInformation>,
   ) {}
   async getPersonalInformations(): Promise<PersonalInformation[]> {
-    return await this.personalInformationRepository.find({
+    return this.personalInformationRepository.find({
       relations: [
         'ward',
         'ward.district',
@@ -50,6 +50,6 @@ export class PersonalInformationsService {
     };
   }
   async deletePersonalInformation(id: number) {
-    return await this.personalInformationRepository.delete(id);
+    return this.personalInformationRepository.delete(id);
   }
 }

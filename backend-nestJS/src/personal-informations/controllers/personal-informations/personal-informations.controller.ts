@@ -27,20 +27,20 @@ export class PersonalInformationsController {
   @Get('')
   @UseInterceptors(ClassSerializerInterceptor)
   async getPersonalInformations() {
-    return await this.personalInformationsService.getPersonalInformations();
+    return this.personalInformationsService.getPersonalInformations();
   }
   @Post('create')
   @UsePipes(ValidationPipe)
   async createPersonalInformation(
     @Body() createPersonalInformationDto: CreatePersonalInformationDto,
   ) {
-    return await this.personalInformationsService.createPersonalInformation(
+    return this.personalInformationsService.createPersonalInformation(
       createPersonalInformationDto,
     );
   }
   @Put('update')
   async updatePersonalInformation(@Body() body: UpdatePersonalInformationDto) {
-    return await this.personalInformationsService.updatePersonalInformation(
+    return this.personalInformationsService.updatePersonalInformation(
       body,
     );
   }
@@ -48,6 +48,6 @@ export class PersonalInformationsController {
   async deletePersonalInformation(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<DeleteResult> {
-    return await this.personalInformationsService.deletePersonalInformation(id);
+    return this.personalInformationsService.deletePersonalInformation(id);
   }
 }

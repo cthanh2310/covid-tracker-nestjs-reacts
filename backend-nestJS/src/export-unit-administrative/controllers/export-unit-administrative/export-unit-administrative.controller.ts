@@ -10,10 +10,10 @@ export class ExportUnitAdministrativeController {
   ) {}
   @Get('')
   async getUnitAdministrative() {
-    return await this.exportUnitAdministrativeService.getUnitAdministrative();
+    return this.exportUnitAdministrativeService.getUnitAdministrative();
   }
   @Put('distribution-update')
   async distributionUpdate(@Body() body: DistributionUpdateDto) {
-    return await this.exportUnitAdministrativeService.distributionUpdate(body);
+    return this.exportUnitAdministrativeService.distributionUpdate(body);
   }
 }

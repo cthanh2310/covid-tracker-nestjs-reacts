@@ -27,20 +27,20 @@ export class VaccineRegistrationsController {
   @Get('')
   @UseInterceptors(ClassSerializerInterceptor)
   async getVaccineRegistrations() {
-    return await this.vaccineRegistrationsService.getVaccineRegistrations();
+    return this.vaccineRegistrationsService.getVaccineRegistrations();
   }
   @Post('create')
   @UsePipes(ValidationPipe)
   async createVaccineRegistration(
     @Body() createVaccineRegistrationDto: CreateVaccineRegistrationDto,
   ) {
-    return await this.vaccineRegistrationsService.createVaccineRegistration(
+    return this.vaccineRegistrationsService.createVaccineRegistration(
       createVaccineRegistrationDto,
     );
   }
   @Put('update')
   async updateVaccineRegistration(@Body() body: UpdateVaccineRegistrationDto) {
-    return await this.vaccineRegistrationsService.updateVaccineRegistration(
+    return this.vaccineRegistrationsService.updateVaccineRegistration(
       body,
     );
   }
@@ -48,6 +48,6 @@ export class VaccineRegistrationsController {
   async deleteVaccineRegistration(
     @Param('id', ParseIntPipe) id: number,
   ): Promise<DeleteResult> {
-    return await this.vaccineRegistrationsService.deleteVaccineRegistration(id);
+    return this.vaccineRegistrationsService.deleteVaccineRegistration(id);
   }
 }

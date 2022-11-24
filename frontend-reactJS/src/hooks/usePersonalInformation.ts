@@ -26,7 +26,7 @@ export const useGetPersonalInformation = () => {
 export const useGetPersonalInformationByCitizenId = () => {
   const getPersonalInformationByCitizenId = useCallback(
     async (citizen_id: string): Promise<AxiosResponse> => {
-      return await axiosClient.get<PersonalInformation>(
+      return axiosClient.get<PersonalInformation>(
         `http://localhost:4000/personal-informations/${citizen_id}`
       );
     },
@@ -38,7 +38,7 @@ export const useGetPersonalInformationByCitizenId = () => {
 export const useDeletePersonalInformation = () => {
   const deletePersonalInformation = useCallback(
     async (id: number): Promise<AxiosResponse> => {
-      return await axiosClient.delete(
+      return axiosClient.delete(
         `http://localhost:4000/personal-informations/delete/${id}`
       );
     },
@@ -49,7 +49,7 @@ export const useDeletePersonalInformation = () => {
 export const useUpdatePersonalInformation = () => {
   const updatePersonalInformation = useCallback(
     async (data: PersonalInformationUpdate): Promise<AxiosResponse> => {
-      return await axiosClient.put(
+      return axiosClient.put(
         `http://localhost:4000/personal-informations/update`,
         data
       );
@@ -63,7 +63,7 @@ export const useCreatePersonalInformation = () => {
     async (
       data: PersonalInformationCreate
     ): Promise<AxiosResponse<PersonalInformationCreateResponse>> => {
-      return await axiosClient.post(
+      return axiosClient.post(
         `http://localhost:4000/personal-informations/create`,
         data
       );

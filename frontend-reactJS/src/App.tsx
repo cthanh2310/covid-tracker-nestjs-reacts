@@ -45,10 +45,6 @@ function App() {
               element={<InjectionRegistration />}
             />
             <Route path="/" element={<Home />} />
-            <Route
-              path="/injection-registration"
-              element={<InjectionRegistration />}
-            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/documentation" element={<Documentation />} />
