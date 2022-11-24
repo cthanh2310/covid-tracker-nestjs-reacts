@@ -9,7 +9,9 @@ describe('ExportUnitAdministrativeController', () => {
       controllers: [ExportUnitAdministrativeController],
     }).compile();
 
-    controller = module.get<ExportUnitAdministrativeController>(ExportUnitAdministrativeController);
+    controller = module.get<ExportUnitAdministrativeController>(
+      ExportUnitAdministrativeController,
+    );
   });
 
   it('should be defined', () => {

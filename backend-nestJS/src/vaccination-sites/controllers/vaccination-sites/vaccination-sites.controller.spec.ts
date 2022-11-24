@@ -9,7 +9,9 @@ describe('VaccinationSitesController', () => {
       controllers: [VaccinationSitesController],
     }).compile();
 
-    controller = module.get<VaccinationSitesController>(VaccinationSitesController);
+    controller = module.get<VaccinationSitesController>(
+      VaccinationSitesController,
+    );
   });
 
   it('should be defined', () => {
