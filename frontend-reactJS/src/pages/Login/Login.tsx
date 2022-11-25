@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import loginImg from '../../images/login.png';
+import loginImg from '../../images/login.jpg';
 import { loginSchema } from './schema';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { loginSelector, loginAsync } from '../../features/login/loginSlice';

@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    image: mysql:8.0  # official image of mysql from docker hub
+    restart: always
+    env_file: ./backend-nestJS/.env  # env path
+    environment: 
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_DATABASE=covid_tracker
+      # - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+      # - MYSQL_DATABASE=${MYSQL_DATABASE}
+    ports:
+      - "3307:3306" # first port will be used on our machine - second port will be used inside docker container
+    # volumes: # backup data when restart
+    #   - db-config:/etc/mysql  # volume save config
+    #  - db-data:/var/lib/mysql # volume save database data - mount data from mysql container to db-data folder in local machine
+    #  when restart container, new data is created from container will mapping to db-data folder
+    # - ./db/backup/files/:/data_backup/data
+  backend_nestJS:
+    build: ./backend-nestJS
+    image: nestjs_image
+    env_file: ./backend-nestJS/.env
+    ports:
+      - 4000:4000
+    environment:
+      - MYSQL_HOST=mysqldb
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=admin
+      - MYSQL_DATABASE=covid_tracker
+      - MYSQL_PORT=3306
+      # - MYSQL_HOST=${MYSQL_HOST}
+      # - MYSQL_USERNAME=${MYSQL_USERNAME}
+      # - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      # - MYSQL_DATABASE=${MYSQL_DATABASE}
+      # - MYSQL_PORT=${MYSQL_PORT}
+    depends_on:
+      - mysqldb  
+    stdin_open: true
+    tty: true
+  frontend_reactJS:
+    build: ./frontend-reactJS
+    image: reactjs_image
+    ports:
+      - "3000:3000"
+# volumes:
+#   db-config:
+#   db-data:

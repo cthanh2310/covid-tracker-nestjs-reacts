@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Navigate } from 'react-router-dom';
 import {
   Stack,
@@ -64,11 +64,6 @@ export const User = () => {
   const [showModalImage, setShowModalImage] = useState<boolean>(false);
   const [imageIsShowed, setImageIsShowed] = useState<IFile>();
   const headerTabs = ['Chứng nhận tiêm chủng', 'Kết quả đăng ký', 'Tài khoản'];
-  enum tabLocation {
-    InjectionConfirm = 0,
-    RegistrationResult = 1,
-    Account = 2
-  }
 
   const {
     formState: { errors },
@@ -125,19 +120,6 @@ export const User = () => {
   const onCloseDialog = () => {
     setOpen(false);
   };
-  useEffect(() => {
-    switch (activeTab) {
-      case tabLocation.InjectionConfirm:
-        window.history.pushState({}, '', '/user/vaccination-certificate');
-        break;
-      case tabLocation.RegistrationResult:
-        window.history.pushState({}, '', '/user/registration-result');
-        break;
-      case tabLocation.Account:
-        window.history.pushState({}, '', '/user/my-account');
-        break;
-    }
-  }, [activeTab, tabLocation]);
   // handle file image upload
   const onImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -271,7 +253,7 @@ export const User = () => {
         onClose={onCloseTitleDialog}
       />
       <Header />
-      <Box sx={{ minHeight: '500px', mt: '80px' }}>
+      <Box sx={{ minHeight: 'calc(100vh - 336px)', mt: '80px' }}>
         <TabContext value={activeTab.toString()}>
           <HeaderTabs
             activeTab={activeTab}

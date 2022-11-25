@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, Grid, TextField, colors } from '@mui/material';
 import { Trans } from 'react-i18next';
 
-import loginImg from '../../images/login.png';
+import loginImg from '../../images/login.jpg';
 import { StyledButton } from '../../components/StyledButton';
 import { Label } from '../../components/Label';
 import { useNavigate } from 'react-router-dom';
