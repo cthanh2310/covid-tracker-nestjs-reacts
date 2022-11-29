@@ -8,15 +8,11 @@ import {
   Grid,
   Typography,
   CircularProgress,
-  Alert,
-  IconButton
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
-import CloseIcon from '@mui/icons-material/Close';
-import DoneIcon from '@mui/icons-material/Done';
 import loginImg from '../../images/login.jpg';
 import { StepOne } from './StepOne';
 import { StepTwo } from './StepTwo';
@@ -26,6 +22,8 @@ import { registerSchema } from './schema';
 import { OTPInputDialog } from '../../components/OTPInputDialog/OTPInputDialog';
 import { IRegister, UserFormData } from './types';
 import { UseRegister } from '../../hooks/useRegister';
+import { CustomizedAlert, Type } from '../../components/CustomizedAlert/CustomizedAlert';
+import { t } from 'i18next';
 
 const steps = ['Số CMND/CCCD', 'Thông tin cá nhân', 'Địa chỉ'];
 export const Register = () => {
@@ -49,7 +47,7 @@ export const Register = () => {
     setOpen(false);
     const files = methods
       .getValues('files')
-      .map((value) => value.file) as File[];
+      ?.map((value) => value.file) as File[];
 
     const formData: IRegister = {
       files: files,
@@ -64,7 +62,7 @@ export const Register = () => {
     setLoading(true);
     try {
       const response = await UseRegister(formData);
-      if ((await response.status) === 201) {
+      if (response.status === 201) {
         setSuccess(true);
       }
     } catch (err: any) {
@@ -125,49 +123,27 @@ export const Register = () => {
         onClose={handleCloseModal}
         onConfirm={handleCloseModal}
       />
-      <Alert
-        sx={{
-          position: 'fixed',
-          zIndex: 1100,
-          right: error ? 0 : '-300px',
-          transition: 'all .3s ease-in-out'
-        }}
-        severity="error"
-        action={
-          <IconButton
-            aria-label="close"
-            color="inherit"
-            size="small"
-            onClick={() => {
-              setError(false);
-            }}>
-            <CloseIcon fontSize="inherit" />
-          </IconButton>
-        }>
-        Đăng ký thất bại, có lỗi xảy ra!
-      </Alert>
-      <Alert
-        sx={{
-          position: 'fixed',
-          zIndex: 1100,
-          right: success ? 0 : '-500px',
-          transition: 'all .3s ease-in-out'
-        }}
-        severity="success"
-        action={
-          <IconButton
-            aria-label="close"
-            color="inherit"
-            size="small"
-            onClick={() => {
-              setSuccess(false);
-              navigate('/login');
-            }}>
-            <DoneIcon fontSize="inherit" />
-          </IconButton>
-        }>
-        Đăng ký thành công, chuyển hướng đến trang đăng nhập?
-      </Alert>
+      <CustomizedAlert 
+        isActive={error} 
+        onClick={
+          ()=> {
+            setError(false);
+          }
+        }
+        message={t("Đăng ký thất bại, có lỗi xảy ra!")}
+        messageType={Type.Error}
+      />
+      <CustomizedAlert 
+        isActive={success} 
+        onClick={
+          ()=> {
+            setSuccess(false);
+            navigate("/login");
+          }
+        }
+        message={t("Đăng ký thành công, chuyển hướng đến trang đăng nhập?")}
+        messageType={Type.Success}
+      />
       <Grid item xs={6}>
         <Box
           component="img"

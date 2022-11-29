@@ -19,6 +19,8 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { loginSelector, loginAsync } from '../../features/login/loginSlice';
 import { User } from '../../models/User';
 import { useLogin } from '../../hooks/useLogin';
+import { CustomizedAlert, Type } from '../../components/CustomizedAlert/CustomizedAlert';
+import { t } from 'i18next';
 
 export const Login = () => {
   const { login } = useLogin();
@@ -35,7 +37,8 @@ export const Login = () => {
   const dispatch = useAppDispatch();
   const loginselectorResult = useAppSelector(loginSelector);
   const navigate = useNavigate();
-
+  const [error, setError] = useState<boolean>(false);
+  
   useEffect(() => {
     if (loginselectorResult.response?.data?.accessToken) {
       return navigate('/user');
@@ -52,6 +55,7 @@ export const Login = () => {
       console.log('data', data);
       dispatch(loginAsync(data));
     } catch (err) {
+      setError(true);
       return err;
     } finally {
       setLoading(false);
@@ -59,6 +63,16 @@ export const Login = () => {
   };
   return !loginselectorResult.response?.data?.accessToken ? (
     <Grid container>
+      <CustomizedAlert 
+        isActive={error} 
+        onClick={
+          ()=> {
+            setError(false);
+          }
+        }
+        message={t("Tài khoản hoặc mật khẩu không chính xác!")}
+        messageType={Type.Error}
+      />
       <Grid item xs={6}>
         <Box
           component="img"
