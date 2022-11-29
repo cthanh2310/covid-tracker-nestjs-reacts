@@ -54,7 +54,6 @@ export const ContentDialog = (props: Props) => {
   const formSubmitHandler: SubmitHandler<VaccineRegistrationCreate> = async (
     data: VaccineRegistrationCreate
   ) => {
-    console.log('data', data);
     setLoading(true);
     try {
       const response = await createVaccineRegistration(data);
@@ -64,7 +63,6 @@ export const ContentDialog = (props: Props) => {
         onClose();
       }
     } catch (err) {
-      console.log(err);
       setLoading(false);
     } finally {
       setLoading(false);

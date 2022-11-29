@@ -52,7 +52,6 @@ export const Login = () => {
     setLoading(true);
     try {
       const { data } = await login(user);
-      console.log('data', data);
       dispatch(loginAsync(data));
     } catch (err) {
       setError(true);
